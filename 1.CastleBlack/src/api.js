@@ -75,4 +75,21 @@ api.post('/players/:playerId/objects/:objectId', function(req, res){
   }
 })
 
+//5. Kill a player: sets player health to 0.
+api.put('/players/:playerId/kill', function(req, res) {
+  const playerId = parseInt(req.params.playerId);
+  const player = players.find(player => player.id === playerId);
+  if(!player) {
+    res.status(404).send(`Player with id ${playerId} not found`)
+  }
+  else if (player.health === 0) {
+    res.status(403).send(`Player with id ${playerId} is already dead`)
+  }
+  else {
+    console.log(player.health); 
+    player.health = 0;
+    res.json();
+  }
+})
+
 module.exports = api;
