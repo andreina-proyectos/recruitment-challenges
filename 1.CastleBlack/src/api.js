@@ -40,4 +40,17 @@ api.post("/players", function(req, res) {
   }
 });
 
+//3.Get player by id: returns the player for the given id.
+api.get('/players/:playerId', function(req, res){
+  const playerId = parseInt(req.params.playerId);
+  console.log(playerId);
+  const player = players.find(player => player.id === playerId);
+  if(!player){
+    res.status(404).send(`Player with id ${playerId} not found`)
+  }
+  else {
+    res.json(player);
+  }
+});
+
 module.exports = api;
