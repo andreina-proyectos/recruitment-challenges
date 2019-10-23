@@ -53,4 +53,26 @@ api.get('/players/:playerId', function(req, res){
   }
 });
 
+// 4. Arm a player with an object in its bag.
+api.post('/players/:playerId/objects/:objectId', function(req, res){
+  const playerId = parseInt(req.params.playerId);
+  const objectId = parseInt(req.params.objectId);
+  const player = players.find(player => player.id === playerId);
+  const object = objects.find(object => object.id === objectId);
+
+  if(!player) {
+    res.status(404).send(`Player with this id ${playerId} not found`)
+  }
+  else if (!object) {
+    res.status(404).send(`Object with the id ${objectId} not found`)
+  }
+  else if (player.bag.includes(objectId)) {
+    res.status(409).send(`Bag already contains this object ${objectId} for the player ${playerId}`)
+  }
+  else{
+    player.bag.push(objectId);
+    res.json()
+  }
+})
+
 module.exports = api;
