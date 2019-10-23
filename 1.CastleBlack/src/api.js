@@ -92,4 +92,17 @@ api.put('/players/:playerId/kill', function(req, res) {
   }
 })
 
+//6.Create object: adds a new object to data source.
+api.post('/objects', function(req, res) {
+  const reqBody = req.body;
+  if(!reqBody.name || !reqBody.value) {
+    res.status(400).send('Bad data format for this new object')
+  }
+  else {
+    reqBody.id = objects.length+1;
+    objects.push(reqBody);
+    res.json(reqBody);
+  }
+})
+
 module.exports = api;
