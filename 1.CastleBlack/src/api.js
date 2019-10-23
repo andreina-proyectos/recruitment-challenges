@@ -25,4 +25,19 @@ api.get("/players", function(req, res) {
   res.json(players);
 });
 
+//2.Create player: adds a new player to data source.
+api.post("/players", function(req, res) {
+  let reqBody = req.body;
+  if(!reqBody.name || !reqBody.age || !reqBody.health){
+    res.status(400).send('Bad data format for new player');
+  }
+  else{
+    reqBody.id = players.length+1;
+    reqBody.bag = [];
+    reqBody.health = 100;
+    players.push(reqBody);
+    res.json(reqBody);
+  }
+});
+
 module.exports = api;
