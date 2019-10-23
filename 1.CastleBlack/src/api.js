@@ -117,4 +117,21 @@ api.get('/objects/:objectId', function(req, res){
   }
 });
 
+//.8 Upgrade object: increase/descrease the value of the object given by id with a new value
+api.put('/objects/:objectId', function(req, res){
+  const objectId = parseInt(req.params.objectId);
+  let reqBody = req.body;
+  const object = objects.find(object => object.id === objectId);
+  if(!object){
+    res.status(404).send(`Object with id ${objectId} not found`)
+  }
+  else if (!reqBody.value) {
+    res.status(400).send(`Value of the object ${objectId} not found`)
+  }
+  else{
+    object.value = reqBody.value;
+    res.json();
+  }
+});
+
 module.exports = api;
