@@ -105,4 +105,16 @@ api.post('/objects', function(req, res) {
   }
 })
 
+//.7 Get object by id: returns the object for the given id.
+api.get('/objects/:objectId', function(req, res){
+  const objectId = parseInt(req.params.objectId);
+  const object = objects.find(object => object.id === objectId);
+  if(!object){
+    res.status(404).send(`Object with id ${objectId} not found`)
+  }
+  else {
+    res.json(object);
+  }
+});
+
 module.exports = api;
