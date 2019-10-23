@@ -134,4 +134,24 @@ api.put('/objects/:objectId', function(req, res){
   }
 });
 
+//9.Destroy object: remove an object from available objects
+api.delete('/objects/:objectId', function(req, res) {
+  const objectId = parseInt(req.params.objectId);
+  const object = objects.find(object => objectId === object.id);
+  if(!object) {
+    res.status(404).send(`Object with id ${objectId} not found`)
+  }
+  else {
+    const objectIndex = objects.indexOf(object);
+    objects.splice(objectIndex, 1);
+    for (const player of players) {
+      if(player.bag.includes(objectId)) {
+        const objectBagIndex = player.bag.indexOf(objectId);
+        player.bag.splice(objectBagIndex, 1);
+      }
+    }
+    res.json();
+  }
+})
+
 module.exports = api;
