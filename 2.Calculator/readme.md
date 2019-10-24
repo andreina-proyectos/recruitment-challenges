@@ -2,7 +2,9 @@
 
 In this exercise you are given the legacy code of Payvision Calculator web app. Maintainance and new features development is your responsability.
 
-## Your tasks
+![Mobile version](/images/mobile-version.png?raw=true "Mobile version")
+
+## Tasks in this exercise:
 
 1. Code review: please list all good/bad practices you find in this application.
 2. It seems the app is buggy... Could you fix it?
@@ -10,45 +12,52 @@ In this exercise you are given the legacy code of Payvision Calculator web app. 
 4. How would do you test this app?
 5. Can you improve the UI/UX?
 
-You are allowed to change as much code as you consider.
-
 ### 1. Code review
 
-Are you a good code reviewer? This would be one of your daily basis tasks.
+Good practices/changes:
+1. First, I separate index.html, index.js and main.css in different files
+2. Added meta tags and head on html
+3. Reorganized calculator buttons on html like mac calculator buttons positions
+4. Changed all var to let or const in order to be ES6 syntax compliant
+6. Changed names of functions in order to be meaningful and provide a cleaner code
+7. Changed message when result is not a number in order to be more user friendly
+8. Use for-of or forEach instead of for loops with counters
 
-- Help our team, list good and bad practices you find, identify bugs or defects and suggest improvements. How would you refactorize it?
-
-Please add code inline comments or include them into your readme file.
+Bad practices:
+1. Lot of inline comments
+2. Use of vars instead of const/let
 
 ### 2. Testing and bug fixing
 
-Product quality, testing and finding bugs is really important at Payvision. This application seems it does not work fine...
+1. Fix bug: Change value of 3 and 0 button on index.html because it was switched
+2. Fix bug: Change plus and minus operations on index.js
+3. Fix first function that throws error on console
+4. Fix clear function functionality
 
-Test it and fix any potential bug you find. Feel free to document your findings in readme file or help yourself with commit messages.
 
 ### 3. New features implementation
 
-Our product owner required us new features for this application. We would like the application new version to support multiplications and divisions.
+1. Added multiply button and functionality
+2. Added divide button and functionality
+3. Current version is 1.2.2 (see package.json version). Should we increase the version? How? Why?
+Yes, because bugs were fixed, so last number of version code need to be increased. As a result, this version need to be 1.2.3.
+I attach this image to give a clearer explanation.
 
-- Could you implement these new features?
-- Bear in mind usage of git-flow to track your changes.
-- Current version is 1.2.2 (see package.json version). Should we increase the version? How? Why?
+![Software versions](/images/version.jpeg?raw=true "Software versions")
 
 ### 4. Test automation
 
-We would like to automate testing of this application.
+What kind of tests would you implement? Why?
 
-- What kind of tests would you implement? Why?
+End to end (e2e) tests that checks that the interface behaves as we expected. I have never tested a frontend before, but I must use a tool like Selenium.
 
-**Bonus**: Implement the tests.
 
 ### 5. UI/UX design
 
-Do you consider yourself a good designer or UI/UX developer?
-
 - Improve the UI/UX to be more user friendly.
-
-Feel free to do any changes. Show us what you are capable to!
+- Add color with hight ratio contrast when buttons are focused. This add accessibility. For this, I used Color Safe web page.
+- Buttons operator have different color to make more easy the experience
+- Make calculator responsive adding media queries on css
 
 ## How to run the application using local server
 

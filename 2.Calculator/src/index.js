@@ -3,6 +3,8 @@
 //Andre: I changed all var to let or const (ES6 syntax)
 //Andre: I think is more easy to read the code if we put all global var at the beginning of the code
 //Andre: Is important to rename function names to meaningful names in order to make clean code
+//Andre: name of variables need to have meaningful names
+//Andre: if user divide by zero, it would say "error"
 
   // Shortcut to get elements
   let getElement = function(element) {
