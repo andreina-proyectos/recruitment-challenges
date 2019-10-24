@@ -2,6 +2,7 @@
 //Andre: is not recommended all functionalities inside one function
 //Andre: I changed all var to let or const (ES6 syntax)
 //Andre: I think is more easy to read the code if we put all global var at the beginning of the code
+//Andre: Is important to rename function names to meaningful names in order to make clean code
 
   // Shortcut to get elements
   let getElement = function(element) {
@@ -9,7 +10,6 @@
       // If passed an ID...
       return document.querySelector(element); // ... returns single element
     }
-
     return document.querySelectorAll(element); // Otherwise, returns a nodelist
   };
 
@@ -20,7 +20,7 @@
     nums = getElement(".num"), // List of numbers
     ops = getElement(".ops"), // List of operators
     currentNumber = "", // Current number
-    oldNum = "", // First number
+    previewNumber = "", // First number
     resultNum, // Result
     operator;
 
@@ -34,34 +34,40 @@
       // Otherwise, add digit to previous number (this is a string!)
       currentNumber += this.getAttribute("data-num");
     }
-
     viewer.innerHTML = currentNumber; // Display current number
   };
 
-  // When: Operator is clicked. Pass number to oldNum and save operator
+  // When: Operator is clicked. Pass number to previewNumber and save operator
   let moveNum = function() {
-    oldNum = currentNumber;
+    previewNumber = currentNumber;
     currentNumber = "";
     operator = this.getAttribute("data-ops");
-
     equals.setAttribute("data-result", ""); // Reset result in attr
   };
 
   // When: Equals is clicked. Calculate result
   let displayNum = function() {
     // Convert string input to numbers
-    oldNum = parseFloat(oldNum);
+    previewNumber = parseFloat(previewNumber);
     currentNumber = parseFloat(currentNumber);
 
     // Perform operation
     switch (operator) {
       case "plus":
-        resultNum = oldNum + currentNumber;
+        resultNum = previewNumber + currentNumber;
         break;
 
       case "minus":
-        resultNum = oldNum - currentNumber;
+        resultNum = previewNumber - currentNumber;
         break;
+
+      case "division":
+      resultNum = previewNumber / currentNumber;
+      break;
+
+      case "multiply":
+      resultNum = previewNumber * currentNumber;
+      break;
 
       // If equal is pressed without an operator, keep number and continue
       default:
@@ -72,10 +78,10 @@
     if (!isFinite(resultNum)) {
       if (isNaN(resultNum)) {
         // If result is not a number; set off by, eg, double-clicking operators
-        resultNum = "You broke it!";
+        resultNum = "So sorry, something was wrong😮 please, try again"; //Andre: I put new friendly message
       } else {
         // If result is infinity, set off by dividing by zero
-        resultNum = "Look at what you've done";
+        resultNum = "Sorry, please try again";
         el("#calculator").classList.add("broken"); // Break calculator
       }
     }
@@ -84,14 +90,14 @@
     viewer.innerHTML = resultNum;
     equals.setAttribute("data-result", resultNum);
 
-    // Now reset oldNum & keep result
-    oldNum = 0;
+    // Now reset previewNumber & keep result
+    previewNumber = 0;
     currentNumber = resultNum;
   };
 
   // When: Clear button is pressed. Clear everything
   let clearAll = function() {
-    oldNum = "";
+    previewNumber = "";
     currentNumber = "";
     viewer.innerHTML = "0";
     equals.setAttribute("data-result", resultNum);
