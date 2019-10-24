@@ -1,6 +1,10 @@
-(function() {
+'use strict';
+//Andre: is not recommended all functionalities inside one function
+//Andre: I changed all var to let or const (ES6 syntax)
+//Andre: I think is more easy to read the code if we put all global var at the beginning of the code
+
   // Shortcut to get elements
-  let el = function(element) {
+  let getElement = function(element) {
     if (element.charAt(0) === "#") {
       // If passed an ID...
       return document.querySelector(element); // ... returns single element
@@ -10,10 +14,10 @@
   };
 
   // Variables
-  let viewer = el("#viewer"), // Calculator screen where result is displayed
-    equals = el("#equals"), // Equal button
-    nums = el(".num"), // List of numbers
-    ops = el(".ops"), // List of operators
+  let viewer = getElement("#viewer"), // Calculator screen where result is displayed
+    equals = getElement("#equals"), // Equal button
+    nums = getElement(".num"), // List of numbers
+    ops = getElement(".ops"), // List of operators
     theNum = "", // Current number
     oldNum = "", // First number
     resultNum, // Result
@@ -109,4 +113,3 @@
 
   // Add click event to clear button
   el("#clear").onclick = clearAll;
-})();
