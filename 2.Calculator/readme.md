@@ -2,7 +2,7 @@
 
 In this exercise you are given the legacy code of Payvision Calculator web app. Maintainance and new features development is your responsability.
 
-![Mobile version](/images/mobile-version.png?raw=true "Mobile version")
+![Mobile version](images/mobile-version.png?raw=true "Mobile version")
 
 ## Tasks in this exercise:
 
