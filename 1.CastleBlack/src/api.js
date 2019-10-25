@@ -171,4 +171,26 @@ api.put('/players/:playerId/rebirth', function(req, res) {
   }
 })
 
+
+//BONUS Implement steal bag from player endpoint: one player steals everything from another player. Bag objects are moved from one player to another.
+api.post('/players/:playerId/stealbag/:anotherPlayer', function(req, res) {
+  const reqBody = req.body;
+  const playerId = parseInt(req.params.playerId);
+  const anotherPlayer = parseInt(req.params.anotherPlayer);
+
+  const player = players.find(player => player.id === playerId);
+  const anotherPlayer = players.find(player => player.id === anotherPlayerId)
+
+  if(!player){
+    res.status(404).send(`Player with id ${playerId} not found`)
+  }
+  else if (! anotherPlayer) {
+    res.status(404).send(`Player with id ${anotherPlayerId} not found`)
+  }
+  else {
+    firstPlayer.bag.concat(anotherPlayer.bag);
+    anotherPlayer.bag = [];
+    res.json(player);
+  }
+  
 module.exports = api;
