@@ -26,6 +26,7 @@ Good practices/changes:
 Bad practices:
 1. Lot of inline comments
 2. Use of vars instead of const/let
+3. Make all functionalities on the same file
 
 ### 2. Testing and bug fixing
 
@@ -55,9 +56,11 @@ End to end (e2e) tests that checks that the interface behaves as we expected. I 
 ### 5. UI/UX design
 
 - Improve the UI/UX to be more user friendly.
+- Edit messages to user when operation is broken
+- Change background color in order to be easier to differentiate calculator and background and make user pay more attention to functionality.
 - Add color with hight ratio contrast when buttons are focused. This add accessibility. For this, I used Color Safe web page.
 - Buttons operator have different color to make more easy the experience
-- Make calculator responsive adding media queries on css
+- Make calculator responsive adding media queries on css, so calculator will fit good on different screen sizes.
 
 ## How to run the application using local server
 
