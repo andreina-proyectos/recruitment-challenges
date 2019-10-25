@@ -31,13 +31,13 @@ class TransactionProcessor {
 
   // Return transactions of given currency
   getTransactionsByCurrency(currency) {
-    // ...
+    this.transactions = this.transactions.filter(transaction => transaction.currency === currency);
     return this;
   }
 
   // Return transactions of given brand
   getTransactionsByBrand(brand) {
-    // ...
+    this.transactions = this.transactions.filter(transaction => transaction.brand === brand);
     return this;
   }
 
