@@ -13,13 +13,19 @@ class TransactionProcessor {
 
   // Check valid transactions rules
   static isValidTransaction(transaction) {
-    // ...
-    return true;
+    const arrayBrand = ["visa", "mastercard", "amex"];
+    const arrayCurrency = ["EUR", "GBP", "USD"];
+    if(transaction.amount>=0 && arrayBrand.includes(transaction.brand) && arrayCurrency.includes(transaction.currency) && transaction.id>0) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   // Remove invalid transactions
   filterInvalidTransactions() {
-    // ...
+    this.transactions = this.transactions.filter(transaction => !TransactionProcessor.isValidTransaction(transaction))
     return this;
   }
 

@@ -70,7 +70,7 @@ describe("TransactionProcessor.getTransactionsByBrand method", () => {
   });
 
   test("getTransactionsByBrand with valid brand", () => {
-    expect(processor.getTransactionsByBrand("visa")).toHaveLength(1);
+    expect(processor.getTransactionsByBrand("visa").transactions).toHaveLength(1);
   });
 
   test("getTransactionsByBrand with false brand", () => {
