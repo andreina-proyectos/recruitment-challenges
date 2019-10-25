@@ -41,6 +41,13 @@ You have to create endpoints (as many as you consider) to support the following 
 5. One object can be used by multiple players
 
 **Use your own criteria for any rule that is not clear. Justify it.**
+I decided in question nº6 not give permission to user to add a new object to data source if the format is invalid.
+
+ ``if(!reqBody.name || !reqBody.value) {
+    res.status(400).send('Bad data format for this new object')
+  }``
+
+But other option is accept and discard some data that is not accepted.
 
 ## How to run the application using a local server
 

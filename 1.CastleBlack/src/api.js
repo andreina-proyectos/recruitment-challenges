@@ -154,4 +154,21 @@ api.delete('/objects/:objectId', function(req, res) {
   }
 })
 
+//BONUS.Implement resurrect player endpoint: bring back to life a dead player using its id.
+
+api.put('/players/:playerId/rebirth', function(req, res) {
+  const playerId = parseInt(req.params.playerId);
+  const player = players.find(player => player.id === playerId);
+  if(!player) {
+    res.status(404).send(`Player with id ${playerId} not found`)
+  }
+  else if (player.health > 0) {
+    res.status(403).send(`Player with id ${playerId} is alive`)
+  }
+  else {
+    player.health = 100;
+    res.json();
+  }
+})
+
 module.exports = api;

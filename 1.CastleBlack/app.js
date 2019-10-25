@@ -12,6 +12,7 @@ app.set("port", port);
 
 async function run() {
   app.disable("x-powered-by"); // QUESTION: any reason is this line here?
+  //Andre: This is to remove X-Powered-By for Security. Is important to give security because is sensible to receive attacks because X-Powered-By header gives information on the technology that's supporting the Web Server. 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
